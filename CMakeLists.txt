@@ -23,6 +23,16 @@ find_package(MRPT 1.9.9 REQUIRED COMPONENTS maps obs gui tclap)
 find_mola_package(mp2p_icp)
 find_mola_package(mola-kernel)
 
+find_package(yaml_cpp_catkin QUIET)
+if(${yaml_cpp_catkin_FOUND})
+  message(STATUS "Found yaml_cpp_catkin, using instead of system library.")
+  set(YamlCpp_LIBRARIES ${yaml_cpp_catkin_LIBRARIES})
+  set(YamlCpp_INCLUDE_DIRS ${yaml_cpp_catkin_INCLUDE_DIRS})
+else()
+  message(STATUS "No yaml_cpp_catkin, using yaml-cpp system library instead.")
+  pkg_check_modules(YamlCpp REQUIRED yaml-cpp>=0.5)
+endif()
+
 # -----------------------
 # define lib:
 file(GLOB_RECURSE LIB_SRCS src/*.cpp src/*.h)
