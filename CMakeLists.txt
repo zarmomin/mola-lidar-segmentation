@@ -47,6 +47,6 @@ mola_add_executable(
 		mp2p_icp
 		mrpt::tclap
 		mrpt::gui
-		yaml-cpp
+		${YamlCpp_LIBRARIES}
 		${PROJECT_NAME}
 )
