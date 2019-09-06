@@ -33,14 +33,14 @@ void FilterEdgesPlanes::initialize(const std::string& cfg_block)
     auto cfg = YAML::Load(cfg_block);
     MRPT_LOG_DEBUG_STREAM("Loading these params:\n" << cfg);
 
-    yamlLoadMemberReq<double>(cfg, "voxel_filter_resolution", params_.voxel_filter_resolution);
-    yamlLoadMemberReq<unsigned int>(cfg, "voxel_filter_decimation", params_.voxel_filter_decimation);
-    yamlLoadMemberReq<unsigned int>(cfg, "full_pointcloud_decimation", params_.full_pointcloud_decimation);
-    yamlLoadMemberReq<float>(cfg, "voxel_filter_max_e2_e0", params_.voxel_filter_max_e2_e0);
-    yamlLoadMemberReq<float>(cfg, "voxel_filter_max_e1_e0", params_.voxel_filter_max_e1_e0);
-    yamlLoadMemberReq<float>(cfg, "voxel_filter_min_e2_e0", params_.voxel_filter_min_e2_e0);
-    yamlLoadMemberReq<float>(cfg, "voxel_filter_min_e1_e0", params_.voxel_filter_min_e1_e0);
-    yamlLoadMemberOpt<float>(cfg, "voxel_filter_min_e1", params_.voxel_filter_min_e1);
+    yamlLoadMemberReq<double>(cfg, "voxel_filter_resolution", &params_.voxel_filter_resolution);
+    yamlLoadMemberReq<unsigned int>(cfg, "voxel_filter_decimation", &params_.voxel_filter_decimation);
+    yamlLoadMemberReq<unsigned int>(cfg, "full_pointcloud_decimation", &params_.full_pointcloud_decimation);
+    yamlLoadMemberReq<float>(cfg, "voxel_filter_max_e2_e0", &params_.voxel_filter_max_e2_e0);
+    yamlLoadMemberReq<float>(cfg, "voxel_filter_max_e1_e0", &params_.voxel_filter_max_e1_e0);
+    yamlLoadMemberReq<float>(cfg, "voxel_filter_min_e2_e0", &params_.voxel_filter_min_e2_e0);
+    yamlLoadMemberReq<float>(cfg, "voxel_filter_min_e1_e0", &params_.voxel_filter_min_e1_e0);
+    yamlLoadMemberOpt<float>(cfg, "voxel_filter_min_e1", &params_.voxel_filter_min_e1);
 
     filter_grid_.resize(
         {-75, -75.0, -10.0}, {75.0, 75.0, 10.0},
